@@ -36,8 +36,13 @@ class AuthController extends Controller
             'password' => $request->password
         ];
 
+        $notification = array(
+            'message' => 'Giriş Başarılı',
+            'alert-type' => 'success'
+        );
+
         if(Auth::attempt($credential)){
-            return redirect()->route('auth.index');
+            return redirect()->route('auth.index')->with($notification);
         } else {
             return back()->with('error','Girilen Bilgiler Doğru Değil!');
         }
@@ -46,8 +51,13 @@ class AuthController extends Controller
 
     public function logout()
     {
+        $notification = array(
+            'message' => 'Çıkış İşlemi Başarılı',
+            'alert-type' => 'success'
+        );
+
         Auth::logout();
-        return redirect()->route('auth.login');
+        return redirect()->route('auth.login')->with($notification);;
     }
 
 

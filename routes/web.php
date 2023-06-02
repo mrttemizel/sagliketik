@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\backend\auth\AuthController;
+use App\Http\Controllers\backend\user\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,8 +27,14 @@ Route::post('/reset-password-submit',[AuthController::class,'reset_password_subm
 
 
 Route::middleware('auth')->group(function (){
-    Route::prefix('admin')->group(function(){
+    Route::prefix('dashboard')->group(function(){
 Route::get('/',[AuthController::class,'index'])->name('auth.index');
 Route::get('/logout',[AuthController::class,'logout'])->name('auth.logout');
+Route::get('/profil',[UserController::class,'profile'])->name('user.profile');
+
+
+
+
+
     });
 });

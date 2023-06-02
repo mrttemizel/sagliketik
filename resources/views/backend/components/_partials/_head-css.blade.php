@@ -1,8 +1,3 @@
-<!-- jsvectormap css -->
-<link href="{{asset('backend/assets/libs/jsvectormap/css/jsvectormap.min.css')}}" rel="stylesheet" type="text/css" />
-
-<!--Swiper slider css-->
-<link href="{{asset('backend/assets/libs/swiper/swiper-bundle.min.css')}}" rel="stylesheet" type="text/css" />
 
 <!-- Layout config Js -->
 <script src="{{asset('backend/assets/js/layout.js')}}"></script>
@@ -12,6 +7,10 @@
 <link href="{{asset('backend/assets/css/icons.min.css')}}" rel="stylesheet" type="text/css" />
 <!-- App Css-->
 <link href="{{asset('backend/assets/css/app.min.css')}}" rel="stylesheet" type="text/css" />
+
 <!-- custom Css-->
 <link href="{{asset('backend/assets/css/custom.min.css')}}" rel="stylesheet" type="text/css" />
+<!-- Toaster Css-->
+<link href="{{asset('backend/assets/libs/toastify-js/toastr.min.css')}}" rel="stylesheet" type="text/css" />
+
 @yield('css')
