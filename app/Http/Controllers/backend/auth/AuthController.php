@@ -10,7 +10,7 @@ use App\Mail\Websiteemail;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Hash;
 
-
+use Illuminate\Http\RedirectResponse;
 class AuthController extends Controller
 {
     public function login(){
@@ -28,7 +28,7 @@ class AuthController extends Controller
     {
         $request->validate([
             'email' => 'required|email',
-            'password' => 'required'
+            'password' => 'required',
         ]);
 
         $credential = [

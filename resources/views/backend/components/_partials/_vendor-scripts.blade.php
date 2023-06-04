@@ -11,9 +11,16 @@
 <script src="{{asset('backend/assets/libs/toastify-js/toastify-js.js')}}"></script>
 <script src="{{asset('backend/assets/js/plugins.min.js')}}"></script>
 
+<script src="{{asset('backend/assets/js/app.js')}}"></script>
 
 <script>
     @if(Session::has('message'))
+
+        toastr.options.positionClass = 'toast-bottom-right';
+        toastr.options.closeButton = 'true';
+        toastr.options.progressBar = 'true';
+        toastr.options.timeOut = '2500';
+
     var type="{{Session::get('alert-type'),'info'}}"
     switch (type){
         case 'info':

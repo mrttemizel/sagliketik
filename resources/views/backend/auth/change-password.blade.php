@@ -19,16 +19,9 @@
         <!-- auth page content -->
         <div class="auth-page-content">
             <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="text-center mt-sm-3 mb-4 text-white-50">
-                            <div>
-                                <a href="#" class="d-inline-block auth-logo">
-                                    <img src="{{ asset('backend/my-image/mt.svg') }}" alt="" height="50">
-                                </a>
-                            </div>
-                            <p class="mt-3 fs-15 fw-medium">Mpanel & Yönetim Sistemleri</p>
-                        </div>
+                <div class="row mt-5">
+                    <div class="col-lg-12 mt-5">
+
                     </div>
                 </div>
                 <!-- end row -->
@@ -39,8 +32,8 @@
 
                             <div class="card-body p-4">
                                 <div class="text-center mt-2">
-                                    <h5 class="text-primary">Yeni Şifre Oluştur</h5>
-                                    <p class="text-muted">Yeni şifreniz daha önce kullandığınız şifreden farklı olmalıdır.</p>
+                                    <img src="{{ asset('backend/my-image/abu-renkli.svg') }}" alt="" height="60">
+                                    <p class="text-muted mt-4">Yeni şifreniz daha önce kullandığınız şifreden farklı olmalıdır.</p>
                                 </div>
                                 @if (session()->get('error'))
                                     <div class="alert alert-danger alert-border-left alert-dismissible fade show"
@@ -62,8 +55,6 @@
                                             <label class="form-label" for="password-input">Şifre</label>
                                             <div class="position-relative auth-pass-inputgroup">
                                                 <input type="password" name="password" class="form-control pe-5 password-input" onpaste="return false" placeholder="Şifre" id="password-input">
-                                                <button class="btn btn-link position-absolute end-0 top-0 text-decoration-none text-muted password-addon" type="button"
-                                                        id="password-addon"><i class="ri-eye-fill align-middle"></i></button>
                                             </div>
                                             <span class="text-danger">
                                                 @error('password')
@@ -77,7 +68,6 @@
                                             <label class="form-label" for="confirm-password-input">Şifreyi Onayla</label>
                                             <div class="position-relative auth-pass-inputgroup">
                                                 <input type="password" name="password_confirmation" class="form-control pe-5 password-input" onpaste="return false" placeholder="Şifreyi Onayla">
-                                                <button class="btn btn-link position-absolute end-0 top-0 text-decoration-none text-muted password-addon" type="button" id="confirm-password-input"><i class="ri-eye-fill align-middle"></i></button>
                                             </div>
                                             <span class="text-danger">
                                             @error('password_confirmation')

@@ -6,7 +6,3 @@
         @slot('title') Dashboard  @endslot
     @endcomponent
 @endsection
-@section('addjs')
-    <!-- App js -->
-    <script src="{{asset('backend/assets/js/app.js')}}"></script>
-@endsection

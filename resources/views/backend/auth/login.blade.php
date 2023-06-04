@@ -20,27 +20,21 @@
         <!-- auth page content -->
         <div class="auth-page-content">
             <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="text-center mt-sm-3 mb-4 text-white-50">
-                            <div>
-                                <a class="d-inline-block auth-logo">
-                                    <img src="{{ asset('backend/my-image/mt.svg') }}" alt="" height="50">
-                                </a>
-                            </div>
-                            <p class="mt-3 fs-15 fw-medium">Mpanel & Yönetim Sistemleri</p>
-                        </div>
+                <div class="row mt-5">
+                    <div class="col-lg-12 mt-5">
+
                     </div>
                 </div>
                 <!-- end row -->
 
                 <div class="row justify-content-center">
                     <div class="col-md-8 col-lg-6 col-xl-5">
-                        <div class="card mt-4">
+                        <div class="card mt-5">
 
-                            <div class="card-body p-4">
+                            <div class="card-body p-4 mt-2">
                                 <div class="text-center mt-2">
-                                    <h5 class="text-primary">Hoş Geldiniz !</h5>
+                                    <img src="{{ asset('backend/my-image/abu-renkli.svg') }}" alt="" height="60">
+                                    <h5 class="text-primary mt-4">Hoş Geldiniz !</h5>
                                 </div>
                                 @if (session()->get('error'))
                                     <div class="alert alert-danger alert-border-left alert-dismissible fade show"
