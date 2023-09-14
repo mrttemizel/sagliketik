@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 
 
 
-Route::get('/',[AuthController::class,'login'])->name('auth.login');
+Route::get('/login',[AuthController::class,'login'])->name('auth.login');
 Route::post('/login-submit',[AuthController::class,'login_submit'])->name('auth.login-submit');
 Route::get('/reset-password',[AuthController::class,'reset_password_page'])->name('auth.reset_password');
 Route::post('/reset-password-link',[AuthController::class,'reset_password_link'])->name('auth.reset-password-link');
@@ -27,8 +27,8 @@ Route::post('/reset-password-submit',[AuthController::class,'reset_password_subm
 
 
 Route::middleware('auth')->group(function (){
-    Route::prefix('dashboard')->group(function(){
-        Route::get('/',[AuthController::class,'index'])->name('auth.index');
+    Route::prefix('admin')->group(function(){
+        Route::get('/dashboard',[AuthController::class,'index'])->name('auth.index');
         Route::get('/logout',[AuthController::class,'logout'])->name('auth.logout');
 
 
