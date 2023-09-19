@@ -217,9 +217,6 @@ class UserController extends Controller
     }
 
 
-
-
-
     /*  Kullanıcı İşlenleri Bitti */
 
 

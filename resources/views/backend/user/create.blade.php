@@ -36,6 +36,8 @@
             <div class="card ">
                 <div class="card-header align-items-center d-flex">
                     <h4 class="card-title mb-0 flex-grow-1">Kullanıcı Ekle</h4>
+                    <a href="{{ route('users.index') }}" class="btn btn-primary waves-effect waves-light d-flex justify-content-between"><i class="ri-arrow-go-back-fill"></i> &nbsp; Geri Dön</a>
+
                 </div><!-- end card header -->
                 <form action="{{route('users.store')}}" method="POST" enctype="multipart/form-data">
                     @csrf

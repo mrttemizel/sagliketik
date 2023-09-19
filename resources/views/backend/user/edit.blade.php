@@ -36,12 +36,13 @@
                                 </div>
                             </div>
                             <h5 class="fs-16 mb-1">{{ $data->name }}</h5>
-                            <p class="text-muted mb-0">     @if ($data->status == 2 )
+                            <p class="text-muted mb-0">
+                                @if ($data->status == 2 )
                                     Super Admin
                                 @elseif($data->status == 1 )
                                     Yönetici
                                 @else
-                                    Editor
+                                    Kullanıcı
                                 @endif</p>
                         </div>
                     </div>
@@ -126,7 +127,7 @@
                                                 <option value="1" {{ $data->status == 1 ? 'selected' : '' }}>
                                                     Yönetici</option>
                                                 <option value="0"{{ $data->status == 0 ? 'selected' : '' }}>
-                                                    Editör</option>
+                                                    Kullanıcı</option>
                                             </select>
                                             <span class="text-danger">
                                     @error('status')

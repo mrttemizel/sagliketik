@@ -18,7 +18,7 @@ class UserSeeder extends Seeder
                 'name' => 'Murat TEMİZEL',
                 'email' => 'admin@admin.com',
                 'password' => '$2y$10$AOClkj6hL0p..zy/KdWe9eN71KWdQqZuoVXkuwt4Y2hS4dQ9t9bWK',
-                'status' => 1,
+                'status' => 2,
             ]
         ];
 
