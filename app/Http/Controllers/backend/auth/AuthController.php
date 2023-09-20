@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\backend\auth;
 
 use App\Http\Controllers\Controller;
+use App\Mail\UserRegisterMail;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -35,6 +36,11 @@ class AuthController extends Controller
         $data -> name = $request->input('name');
         $data -> password = Hash::make($request->input('password'));
         $data -> status = 3;
+        $login_link = url('/login');
+        $subject = 'Sağlık Etik Kurulu';
+        Mail::to($request->email)->send(new UserRegisterMail($subject , $login_link));
+
+        return redirect()->route('auth.login')->with('success','Kayıt Başarılı!');
 
     }
     public function index(){
