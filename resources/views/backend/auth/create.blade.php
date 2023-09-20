@@ -1,6 +1,6 @@
 @extends('backend.components.master-withoutnavbar')
 @section('title')
-    Login
+    Create
 @endsection
 @section('content')
 
@@ -20,16 +20,15 @@
         <!-- auth page content -->
         <div class="auth-page-content">
             <div class="container">
-                <div class="row mt-5">
-                    <div class="col-lg-12 mt-5">
-
-                    </div>
+                <div class="row mt-5 text-white justify-content-center">
+                    <h3 class="text-white text-center">Sağlık Bilimleri Girişimsel Olmayan Araştırmalar Etik Kurulu Başvuru Sayfası
+                    </h3>
                 </div>
                 <!-- end row -->
 
                 <div class="row justify-content-center">
                     <div class="col-md-8 col-lg-6 col-xl-5">
-                        <div class="card mt-5">
+                        <div class="card mt-2">
 
                             <div class="card-body p-4 mt-2">
                                 <div class="text-center mt-2">
@@ -59,7 +58,7 @@
 
 
                                 <div class="p-2">
-                                    <form action="{{route('auth.login-submit')}}" method="POST">
+                                    <form action="{{route('auth.store')}}" method="POST">
                                         @csrf
                                         <div class="mb-3">
                                             <label for="email" class="form-label">E-Posta Adresi :</label>
@@ -71,44 +70,59 @@
                                                 @enderror
                                             </span>
                                         </div>
-
                                         <div class="mb-3">
-                                            <div class="float-end">
-                                                <a href="{{route('auth.reset_password')}}" class="text-muted"><b>Şifremi
-                                                        Unuttum?</b></a>
-                                            </div>
-                                            <label class="form-label">Şifre :</label>
-                                            <div class="position-relative auth-pass-inputgroup mb-3">
-                                                <input type="password" name="password"
-                                                       class="form-control pe-5 password-input"
-                                                       placeholder="Şifre">
-                                                <button
-                                                    class="btn btn-link position-absolute end-0 top-0 text-decoration-none text-muted password-addon"
-                                                    type="button" id="password-addon"></button>
-                                                <span class="text-danger">
-                                                    @error('password')
-                                                    {{ $message }}
-                                                    @enderror
-                                                </span>
-                                            </div>
-
+                                            <label for="name" class="form-label">Ad Soyad :</label>
+                                            <input type="text" name="name" value="{{ old('name') }}"
+                                                   class="form-control" placeholder="Ad ve Soyad">
+                                            <span class="text-danger">
+                                                @error('name')
+                                                {{ $message }}
+                                                @enderror
+                                            </span>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="password" class="form-label">Şifre :</label>
+                                            <input type="password" name="password" value="{{ old('password') }}"
+                                                   class="form-control" placeholder="Şifre">
+                                            <span class="text-danger">
+                                                @error('password')
+                                                {{ $message }}
+                                                @enderror
+                                            </span>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="password_confirmation" class="form-label">Şifre Tekrar :</label>
+                                            <input type="password" name="password_confirmation" value="{{ old('password_confirmation') }}"
+                                                   class="form-control" placeholder="Şifre Tekrar">
+                                            <span class="text-danger">
+                                                @error('password_confirmation')
+                                                {{ $message }}
+                                                @enderror
+                                            </span>
                                         </div>
                                         <div class="mt-4">
-                                            <button class="btn btn-info w-100" type="submit">Giriş Yap</button>
+                                            <button class="btn btn-info w-100" type="submit">Kayıt Ol</button>
                                         </div>
 
                                     </form>
                                     <div class="mt-3 text-center">
-                                        Henüz üye değilmisin?
-                                        <a class="text-primary " href="{{route('auth.create')}}" ><b>Kayıt Ol</b></a>
+                                        Hesabın var mı?
+                                        <a class="text-primary" href="{{route('auth.login')}}" ><b>Giriş Yap</b></a>
 
                                     </div>
+                                </div>
                             </div>
                             <!-- end card body -->
                         </div>
                         <!-- end card -->
 
                     </div>
+                </div>
+                <div class="row  text-white justify-content-center">
+
+                    <h5 class="text-center">
+                        Antalya Bilim Üniversitesi Girişimsel Olmayan Araştırmalar Etik Kurulu Yönergesi ABÜ Senatosu’nun 05.04.2022 tarih ve 05 sayılı toplantısında alınan karar ile kabul edilmiş olup üyelerin 08.04.2022 tarihi itibarı ile atanmaları sonrasında çalışmalarına başlamıştır. Türkiye İlaç ve Tıbbi Cihaz Kurumundan 13/04/2014 tarih ve 28617 sayılı İlaç ve Biyolojik Ürünlerin Klinik Araştırmaları Hakkında Yönetmelik (Klinik İlaç Araştırmaları, Tıbbi Cihaz Araştırmaları vb.) kapsamı dışında kalan Yönetmelik Dışı Klinik Araştırmalar ABÜ Girişimsel Olmayan Araştırmalar Etik Kurulunda değerlendirilecektir.
+                    </h5>
                 </div>
                 <!-- end row -->
             </div>
