@@ -56,5 +56,6 @@ Route::middleware('auth')->group(function (){
 
         Route::get('/application/create',[ApplicationController::class,'create'])->name('application.create');
         Route::get('/application/index',[ApplicationController::class,'index'])->name('application.index');
+        Route::post('/application/store',[ApplicationController::class,'store'])->name('application.store');
     });
 });

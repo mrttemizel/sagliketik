@@ -36,16 +36,24 @@
             <div class="card ">
                 <div class="card-header align-items-center d-flex">
                     <h4 class="card-title mb-0 flex-grow-1">Başvuru Yap</h4>
-                    <a href="#" class="btn btn-primary waves-effect waves-light d-flex justify-content-between"><i
+                    <a href="{{route('application.index')}}" class="btn btn-primary waves-effect waves-light d-flex justify-content-between"><i
                             class="ri-arrow-go-back-fill"></i> &nbsp; Geri Dön</a>
 
                 </div><!-- end card header -->
-                <form action="#" method="POST" enctype="multipart/form-data">
+
+                <form action="{{route('application.store')}}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="card-body">
                         <div class="live-preview">
-                            <div class="row gy-3">
-                                <div class="col-xl-12 col-md-12 mt-3">
+                            <div class="row">
+                                <div class="col-xl-12 col-md-12">
+                                    <!-- Danger Alert -->
+                                    <div class="alert alert-danger alert-dismissible border-2 bg-body-secondary fade show" role="alert">
+                                        <strong>ÖNEMLİ</strong> - Başvuruyu tamamla dedikten sonra, yüklemiş olduğunuz dosyalarda düzenleme <b>yapılamamaktadır!</b>
+                                    </div>
+                                    <!-- end card -->
+                                </div>
+                                <div class="col-xl-12 col-md-12 mt-1 ">
                                     <div>
                                         <label for="formFile" class="form-label">Başvuru Dosyası Kontrol Listesi <span class="text-danger"> Yükleyebilceğiniz dosya tipleri <b>"pdf,xlsx,docx,doc"</b>.</span></label>
                                         <input class="form-control"  type="file" name="basvuru_dosya_kontrol_listesi">
@@ -57,7 +65,7 @@
                                     </div>
                                     <!-- end card -->
                                 </div>
-                                <div class="col-xl-12 col-md-12 mt-3">
+                                <div class="col-xl-12 col-md-12 mt-4">
                                     <div>
                                         <label for="formFile" class="form-label">Başvuru Dilekçesi <span class="text-danger"> Yükleyebilceğiniz dosya tipleri <b>"pdf,xlsx,docx,doc"</b>.</span></label>
                                         <input class="form-control"  type="file" name="basvuru_dilekcesi">
@@ -69,7 +77,7 @@
                                     </div>
                                     <!-- end card -->
                                 </div>
-                                <div class="col-xl-12 col-md-12 mt-3">
+                                <div class="col-xl-12 col-md-12 mt-4">
                                     <div>
                                         <label for="formFile" class="form-label">Etik Kurul Başvuru Formu <span class="text-danger"> Yükleyebilceğiniz dosya tipleri <b>"pdf,xlsx,docx,doc"</b>.</span></label>
                                         <input class="form-control"  type="file" name="etik_kurul_basvuru_formu">
@@ -81,7 +89,7 @@
                                     </div>
                                     <!-- end card -->
                                 </div>
-                                <div class="col-xl-12 col-md-12 mt-3">
+                                <div class="col-xl-12 col-md-12 mt-4">
                                     <div>
                                         <label for="formFile" class="form-label">Bilgilendirilmiş Gönüllü Onam Formu <span class="text-danger"> Yükleyebilceğiniz dosya tipleri <b>"pdf,xlsx,docx,doc"</b>.</span></label>
                                         <input class="form-control"  type="file" name="bilgilendirilmis_gonullu_onam_formu">
@@ -93,7 +101,7 @@
                                     </div>
                                     <!-- end card -->
                                 </div>
-                                <div class="col-xl-12 col-md-12 mt-3">
+                                <div class="col-xl-12 col-md-12 mt-4">
                                     <div>
                                         <label for="formFile" class="form-label">Çoçuk Hasta Onam Formu<span class="text-danger"> Yükleyebilceğiniz dosya tipleri <b>"pdf,xlsx,docx,doc"</b>.</span></label>
                                         <input class="form-control"  type="file" name="cocuk_hasta_onam_formu">
@@ -105,7 +113,7 @@
                                     </div>
                                     <!-- end card -->
                                 </div>
-                                <div class="col-xl-12 col-md-12 mt-3">
+                                <div class="col-xl-12 col-md-12 mt-4">
                                     <div>
                                         <label for="formFile" class="form-label">Ebeveyn Onam Formu<span class="text-danger"> Yükleyebilceğiniz dosya tipleri <b>"pdf,xlsx,docx,doc"</b>.</span></label>
                                         <input class="form-control"  type="file" name="ebeveyn_onam_formu">
@@ -117,7 +125,7 @@
                                     </div>
                                     <!-- end card -->
                                 </div>
-                                <div class="col-xl-12 col-md-12 mt-3">
+                                <div class="col-xl-12 col-md-12 mt-4">
                                     <div>
                                         <label for="formFile" class="form-label">Sağlıklı Çocuk Onam Formu<span class="text-danger"> Yükleyebilceğiniz dosya tipleri <b>"pdf,xlsx,docx,doc"</b>.</span></label>
                                         <input class="form-control"  type="file" name="saglikli_cocuk_onam_formu">
@@ -129,7 +137,7 @@
                                     </div>
                                     <!-- end card -->
                                 </div>
-                                <div class="col-xl-12 col-md-12 mt-3">
+                                <div class="col-xl-12 col-md-12 mt-4">
                                     <div>
                                         <label for="formFile" class="form-label">Bilgilendirilmiş, Gönüllü Görüntü ve Ses Kayıtları Kullanımı İzin Formu<span class="text-danger"> Yükleyebilceğiniz dosya tipleri <b>"pdf,xlsx,docx,doc"</b>.</span></label>
                                         <input class="form-control"  type="file" name="bilgilendirilmis_gonullu_goruntu_ve_ses">
@@ -141,7 +149,7 @@
                                     </div>
                                     <!-- end card -->
                                 </div>
-                                <div class="col-xl-12 col-md-12 mt-3">
+                                <div class="col-xl-12 col-md-12 mt-4">
                                     <div>
                                         <label for="formFile" class="form-label">Özgeçmiş<span class="text-danger"> Yükleyebilceğiniz dosya tipleri <b>"pdf,xlsx,docx,doc"</b>.</span></label>
                                         <input class="form-control"  type="file" name="ozgecmis">
@@ -153,7 +161,7 @@
                                     </div>
                                     <!-- end card -->
                                 </div>
-                                <div class="col-xl-12 col-md-12 mt-3">
+                                <div class="col-xl-12 col-md-12 mt-4">
                                     <div>
                                         <label for="formFile" class="form-label">İlgili ABD Bilgilendirme Beyanı<span class="text-danger"> Yükleyebilceğiniz dosya tipleri <b>"pdf,xlsx,docx,doc"</b>.</span></label>
                                         <input class="form-control"  type="file" name="ilgili_abd_bilgilendirme_beyani">
@@ -165,9 +173,9 @@
                                     </div>
                                     <!-- end card -->
                                 </div>
-                                <div class="col-xl-12 col-md-12 mt-3">
+                                <div class="col-xl-12 col-md-12 mt-4">
                                     <div>
-                                        <label for="formFile" class="form-label">Covid-Genelgesi-Taahhütnamesi<span class="text-danger"> Yükleyebilceğiniz dosya tipleri <b>"pdf,xlsx,docx,doc"</b>.</span></label>
+                                        <label for="formFile" class="form-label">Covid - Genelgesi - Taahhütnamesi<span class="text-danger"> Yükleyebilceğiniz dosya tipleri <b>"pdf,xlsx,docx,doc"</b>.</span></label>
                                         <input class="form-control"  type="file" name="covid_genelgesi_taahhutnamesi">
                                         <span class="text-danger">
                                     @error('covid_genelgesi_taahhutnamesi')
@@ -177,7 +185,7 @@
                                     </div>
                                     <!-- end card -->
                                 </div>
-                                <div class="col-xl-12 col-md-12 mt-3">
+                                <div class="col-xl-12 col-md-12 mt-4">
                                     <div>
                                         <label for="formFile" class="form-label">Biyolojik Materyal Transfer Formu<span class="text-danger"> Yükleyebilceğiniz dosya tipleri <b>"pdf,xlsx,docx,doc"</b>.</span></label>
                                         <input class="form-control"  type="file" name="biyolojik_meteryal_transfer_formu">
@@ -189,7 +197,7 @@
                                     </div>
                                     <!-- end card -->
                                 </div>
-                                <div class="col-xl-12 col-md-12 mt-3">
+                                <div class="col-xl-12 col-md-12 mt-4">
                                     <div>
                                         <label for="formFile" class="form-label">Multidisipliner Araştırmalar Onay Formu<span class="text-danger"> Yükleyebilceğiniz dosya tipleri <b>"pdf,xlsx,docx,doc"</b>.</span></label>
                                         <input class="form-control"  type="file" name="multidisipliner_arastirma_onay_formu">
@@ -201,7 +209,7 @@
                                     </div>
                                     <!-- end card -->
                                 </div>
-                                <div class="col-xl-12 col-md-12 mt-3">
+                                <div class="col-xl-12 col-md-12 mt-4">
                                     <div>
                                         <label for="formFile" class="form-label">ÜY-FR-1080 Değerlendirme Formu<span class="text-danger"> Yükleyebilceğiniz dosya tipleri <b>"pdf,xlsx,docx,doc"</b>.</span></label>
                                         <input class="form-control"  type="file" name="degerlendirme_formu">
@@ -213,7 +221,7 @@
                                     </div>
                                     <!-- end card -->
                                 </div>
-                                <div class="col-xl-12 col-md-12 mt-3">
+                                <div class="col-xl-12 col-md-12 mt-4">
                                     <div>
                                         <label for="formFile" class="form-label">Ek-1 Yüklemek İstediğiniz Ek Dosya<span class="text-danger"> Yükleyebilceğiniz dosya tipleri <b>"pdf,xlsx,docx,doc"</b>.</span></label>
                                         <input class="form-control"  type="file" name="ek_1">
@@ -225,7 +233,7 @@
                                     </div>
                                     <!-- end card -->
                                 </div>
-                                <div class="col-xl-12 col-md-12 mt-3">
+                                <div class="col-xl-12 col-md-12 mt-4">
                                     <div>
                                         <label for="formFile" class="form-label">Ek-2 Yüklemek İstediğiniz Ek Dosya<span class="text-danger"> Yükleyebilceğiniz dosya tipleri <b>"pdf,xlsx,docx,doc"</b>.</span></label>
                                         <input class="form-control"  type="file" name="ek_2">
@@ -237,7 +245,7 @@
                                     </div>
                                     <!-- end card -->
                                 </div>
-                                <div class="col-xl-12 col-md-12 mt-3">
+                                <div class="col-xl-12 col-md-12 mt-4">
                                     <div>
                                         <label for="formFile" class="form-label">Ek-3 Yüklemek İstediğiniz Ek Dosya<span class="text-danger"> Yükleyebilceğiniz dosya tipleri <b>"pdf,xlsx,docx,doc"</b>.</span></label>
                                         <input class="form-control"  type="file" name="ek_3">
@@ -251,9 +259,9 @@
                                 </div>
 
 
-                                <div class="col-lg-12 mt-3">
+                                <div class="col-lg-12 mt-4">
                                     <div class="hstack gap-2 justify-content-end">
-                                        <button type="submit" class="btn btn-primary">Başvuru Yap</button>
+                                        <button type="submit" class="btn btn-primary">Başvuru Tamamla</button>
                                     </div>
                                 </div>
 

@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('applications', function (Blueprint $table) {
             $table->id();
-            $table->id();
+            $table->string("basvuru_id");
             $table->string('basvuru_dosya_kontrol_listesi')->nullable();
             $table->string('basvuru_dilekcesi')->nullable();
             $table->string('etik_kurul_basvuru_formu')->nullable();
@@ -31,6 +31,9 @@ return new class extends Migration
             $table->string('ek_1')->nullable();
             $table->string('ek_2')->nullable();
             $table->string('ek_3')->nullable();
+
+            $table->unsignedBigInteger('user_id')->nullable();
+            $table->foreign('3')->references('id')->on('users');
 
             $table->timestamps();
         });
