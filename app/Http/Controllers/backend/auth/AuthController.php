@@ -40,7 +40,13 @@ class AuthController extends Controller
         $subject = 'Sağlık Etik Kurulu';
         Mail::to($request->email)->send(new UserRegisterMail($subject , $login_link));
 
-        return redirect()->route('auth.login')->with('success','Kayıt Başarılı!');
+        $query = $data->save();
+
+        if (!$query) {
+            return back()->with('error','Bir Hata Oluştu!');
+        } else {
+            return redirect()->route('auth.login')->with('success','Kayıt Başarılı!');
+        }
 
     }
     public function index(){
@@ -109,6 +115,8 @@ class AuthController extends Controller
 
 
         Mail::to($request->email)->send(new Websiteemail($subject , $button));
+
+
         return back()->with('success','Sfırlama talimatları e-posta adresinize gönderildi!');
 
     }

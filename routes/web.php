@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\backend\application\ApplicationController;
 use App\Http\Controllers\backend\auth\AuthController;
+use App\Http\Controllers\backend\form\FormController;
 use App\Http\Controllers\backend\user\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -18,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 
 
 
-Route::get('/login',[AuthController::class,'login'])->name('auth.login');
+Route::get('/',[AuthController::class,'login'])->name('auth.login');
 Route::get('/create',[AuthController::class,'create'])->name('auth.create');
 Route::post('/store',[AuthController::class,'store'])->name('auth.store');
 Route::post('/login-submit',[AuthController::class,'login_submit'])->name('auth.login-submit');
@@ -47,5 +49,12 @@ Route::middleware('auth')->group(function (){
         Route::post('/user/image-update',[UserController::class,'image_update'])->name('users.image.update');
         Route::post('/user/information-update',[UserController::class,'information_update'])->name('users.information.update');
         Route::post('/user/password-update',[UserController::class,'password_update'])->name('users.password.update');
+
+
+        Route::get('/forms/index',[FormController::class,'index'])->name('forms.index');
+
+
+        Route::get('/application/create',[ApplicationController::class,'create'])->name('application.create');
+        Route::get('/application/index',[ApplicationController::class,'index'])->name('application.index');
     });
 });
