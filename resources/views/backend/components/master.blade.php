@@ -9,7 +9,7 @@
     <meta content="Mpanel - Yönetim Sistemleri" name="description" />
     <meta content="murattemizel" name="author" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <link rel="shortcut icon" href="{{asset('backend/my-image/favicon-32x32.png')}}">
+    <link rel="shortcut icon" href="{{asset('backend/my-image/favicon.png')}}">
 
     @include('backend.components._partials._head-css')
 

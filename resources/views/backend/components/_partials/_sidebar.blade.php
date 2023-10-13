@@ -23,34 +23,49 @@
             </div>
             <ul class="navbar-nav" id="navbar-nav">
                 <li class="menu-title"><span data-key="t-menu">Menu</span></li>
+                @if(Auth::user()->status==2|Auth::user()->status==1 |Auth::user()->status==0 )
                 <li class="nav-item">
                     <a class="nav-link menu-link" href="{{route('auth.index')}}">
                         <i class="ri-dashboard-2-line"></i> <span data-key="t-dashboards">Dashboard</span>
                     </a>
                 </li> <!-- end Dashboard Menu -->
+                @endif
+                @if(Auth::user()->status==2|Auth::user()->status==1 |Auth::user()->status==0 )
+                <li class="nav-item">
+                    <a class="nav-link menu-link" href="{{route('student.index')}}">
+                        <i class="ri-file-chart-line"></i> <span data-key="t-dashboards">Başvurular</span>
+                    </a>
+                </li>
+                @endif
+                @if(Auth::user()->status==3)
+
                 <li class="nav-item">
                     <a class="nav-link menu-link" href="{{route('forms.index')}}">
                         <i class="ri-layout-top-line"></i> <span data-key="t-dashboards">Başvuru Formları</span>
                     </a>
                 </li> <!-- end Dashboard Menu -->
+                @endif
+                @if(Auth::user()->status==3)
+                    <li class="nav-item">
+                        <a class="nav-link menu-link" href="#applicationDashboards" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="applicationDashboards">
+                            <i class="ri-file-chart-line"></i> <span data-key="t-dashboards">Başvurular</span>
+                        </a>
+                        <div class="collapse menu-dropdown" id="applicationDashboards">
+                            <ul class="nav nav-sm flex-column">
+                                @if(Auth::user()->status == 3)
+                                    <li class="nav-item">
+                                        <a href="{{route('application.create')}}" class="nav-link"><span data-key="t-job">Yeni Başvuru Yap</span> <span class="badge badge-pill bg-success" data-key="t-new">+</span></a>
+                                    </li>                            @endif
 
-                <li class="nav-item">
-                    <a class="nav-link menu-link" href="#applicationDashboards" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="applicationDashboards">
-                        <i class="ri-file-chart-line"></i> <span data-key="t-dashboards">Başvurular</span>
-                    </a>
-                    <div class="collapse menu-dropdown" id="applicationDashboards">
-                        <ul class="nav nav-sm flex-column">
+                                <li class="nav-item">
+                                    <a href="{{route('application.index')}}" class="nav-link" data-key="t-analytics">    {{Auth::user()->status == 3 ? 'Başvurularımı' : 'Başvuruları'}} Listele </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                @endif
 
-                            <li class="nav-item">
-                                <a href="{{route('application.create')}}" class="nav-link"><span data-key="t-job">Yeni Başvuru Yap</span> <span class="badge badge-pill bg-success" data-key="t-new">+</span></a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="{{route('application.index')}}" class="nav-link" data-key="t-analytics"> Başvurularımı Listele </a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-
+                @if(Auth::user()->status==2 || Auth::user()->status==1  )
                 <li class="nav-item">
                     <a class="nav-link menu-link" href="#sidebarDashboards" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarDashboards">
                         <i class="ri-shield-user-line"></i> <span data-key="t-dashboards">Kullanıcılar</span>
@@ -67,6 +82,7 @@
                         </ul>
                     </div>
                 </li> <!-- end Dashboard Menu -->
+                @endif
 
 
 

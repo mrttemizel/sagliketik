@@ -94,7 +94,7 @@
 
                                         </div>
                                         <div class="mt-4">
-                                            <button class="btn btn-info w-100" type="submit">Giriş Yap</button>
+                                            <button class="btn btn-info w-100"  id="login_button" type="submit">Giriş Yap</button>
                                         </div>
 
                                     </form>
@@ -122,3 +122,11 @@
 
 @endsection
 
+        @section('addjs')
+            <script>
+                $(document).on('click', '#login_button', function () {
+                    $('#login_button').html('Giriş Yapılıyor...');
+                    $('#login_button').addClass("disabled");
+                });
+            </script>
+@endsection

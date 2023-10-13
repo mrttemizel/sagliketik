@@ -17,6 +17,7 @@
 
     <div class="row mt-5" >
         <div class="col-xxl-3">
+
             <div class="card mt-n5">
                 <form action="{{route('users.image.update')}}" method="POST" enctype="multipart/form-data">
                     @csrf
@@ -104,7 +105,7 @@
                                     <div class="col-lg-6">
                                         <div class="mb-3">
                                             <label for="phonenumberInput" class="form-label">Telefon Numarası :</label>
-                                            <input type="text" class="form-control" name="phone" placeholder="Telefon Numarası" value="{{$data->phone}}">
+                                            <input type="text"  name="phone" class="form-control" value="{{$data->phone}}" id="cleave-phone" placeholder="(xxx)xxx-xxxx">
                                         </div>
                                     </div>
                                     <!--end col-->
@@ -120,22 +121,26 @@
                                                 </span>
                                         </div>
                                     </div>
-                                    <div class="col-xl-12 col-md-12">
-                                        <div>
-                                            <label for="labelInput" class="form-label">Kullanıcı Rolü <span class="text-danger">*</span></label>
-                                            <select class="form-select" name="status"  aria-label="Default select example">
-                                                <option value="1" {{ $data->status == 1 ? 'selected' : '' }}>
-                                                    Yönetici</option>
-                                                <option value="0"{{ $data->status == 0 ? 'selected' : '' }}>
-                                                    Kullanıcı</option>
-                                            </select>
-                                            <span class="text-danger">
+                                    @if($data->status == 1 || $data->status == 0 )
+                                        <div class="col-xl-12 col-md-12">
+                                            <div>
+                                                <label for="labelInput" class="form-label">Kullanıcı Rolü <span class="text-danger">*</span></label>
+                                                <select class="form-select" name="status"  aria-label="Default select example">
+                                                    <option value="1" {{ $data->status == 1 ? 'selected' : '' }}>
+                                                        Yönetici</option>
+                                                    <option value="0"{{ $data->status == 0 ? 'selected' : '' }}>
+                                                        Kullanıcı</option>
+                                                </select>
+                                                <span class="text-danger">
                                     @error('status')
-                                                {{ $message }}
-                                                @enderror
+                                                    {{ $message }}
+                                                    @enderror
                                     </span>
+                                            </div>
                                         </div>
-                                    </div>
+
+                                    @endif
+
 
                                     <!--end col-->
                                     <div class="col-lg-12 mt-3">
@@ -213,6 +218,9 @@
     <script src="{{ asset('backend/assets/js/pages/sweetalerts.init.js') }}"></script>
     <script src="{{ asset('backend/assets/js/pages/profile-setting.init.js') }}"></script>
 
+    <script src="{{asset('backend/assets/libs/cleave.js/addons/cleave-phone.ve.js')}}"></script>
+    <script src="{{asset('backend/assets/libs/cleave.js/cleave.min.js')}}"></script>
+    <script src="{{asset('backend/assets/js/pages/form-masks.init.js')}}"></script>
     <script>
 
         $(document).ready(function() {

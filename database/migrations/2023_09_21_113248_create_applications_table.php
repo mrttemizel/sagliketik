@@ -31,9 +31,12 @@ return new class extends Migration
             $table->string('ek_1')->nullable();
             $table->string('ek_2')->nullable();
             $table->string('ek_3')->nullable();
+            $table->longText('degerlendime')->nullable();
+
+            $table->string("basvuru_durumu");
 
             $table->unsignedBigInteger('user_id')->nullable();
-            $table->foreign('3')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');;
 
             $table->timestamps();
         });

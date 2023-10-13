@@ -3,6 +3,7 @@
 use App\Http\Controllers\backend\application\ApplicationController;
 use App\Http\Controllers\backend\auth\AuthController;
 use App\Http\Controllers\backend\form\FormController;
+use App\Http\Controllers\backend\student\StudentController;
 use App\Http\Controllers\backend\user\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -32,7 +33,7 @@ Route::post('/reset-password-submit',[AuthController::class,'reset_password_subm
 
 Route::middleware('auth')->group(function (){
     Route::prefix('admin')->group(function(){
-        Route::get('/dashboard',[AuthController::class,'index'])->name('auth.index');
+        Route::get('/dashboard',[AuthController::class,'index'])->name('auth.index')->middleware('isStatus');
         Route::get('/logout',[AuthController::class,'logout'])->name('auth.logout');
 
 
@@ -41,21 +42,30 @@ Route::middleware('auth')->group(function (){
         Route::post('/profile/profile-information-update',[UserController::class,'profile_information_update'])->name('users.profile.information.update');
         Route::post('/profile/profile-password-update',[UserController::class,'profile_password_update'])->name('users.profile.password.update');
 
-        Route::get('/users/create',[UserController::class,'create'])->name('users.create');
-        Route::post('/users/store',[UserController::class,'store'])->name('users.store');
-        Route::get('/users/index',[UserController::class,'index'])->name('users.index');
-        Route::get('/users/delete/{id}',[UserController::class,'delete'])->name('users.delete');
-        Route::get('/users/edit/{id}',[UserController::class,'edit'])->name('users.edit');
-        Route::post('/user/image-update',[UserController::class,'image_update'])->name('users.image.update');
-        Route::post('/user/information-update',[UserController::class,'information_update'])->name('users.information.update');
-        Route::post('/user/password-update',[UserController::class,'password_update'])->name('users.password.update');
+        Route::get('/users/create',[UserController::class,'create'])->name('users.create')->middleware('isStatus');
+        Route::post('/users/store',[UserController::class,'store'])->name('users.store')->middleware('isStatus');
+        Route::get('/users/index',[UserController::class,'index'])->name('users.index')->middleware('isStatus');
+        Route::get('/users/delete/{id}',[UserController::class,'delete'])->name('users.delete')->middleware('isStatus');
+        Route::get('/users/edit/{id}',[UserController::class,'edit'])->name('users.edit')->middleware('isStatus');
+        Route::post('/user/image-update',[UserController::class,'image_update'])->name('users.image.update')->middleware('isStatus');
+        Route::post('/user/information-update',[UserController::class,'information_update'])->name('users.information.update')->middleware('isStatus');
+        Route::post('/user/password-update',[UserController::class,'password_update'])->name('users.password.update')->middleware('isStatus');
 
 
-        Route::get('/forms/index',[FormController::class,'index'])->name('forms.index');
+        Route::get('/forms/index',[FormController::class,'index'])->name('forms.index')->middleware('studentStatus');
 
 
-        Route::get('/application/create',[ApplicationController::class,'create'])->name('application.create');
-        Route::get('/application/index',[ApplicationController::class,'index'])->name('application.index');
-        Route::post('/application/store',[ApplicationController::class,'store'])->name('application.store');
+        Route::get('/application/create',[ApplicationController::class,'create'])->name('application.create')->middleware('studentStatus');
+        Route::get('/application/index',[ApplicationController::class,'index'])->name('application.index')->middleware('studentStatus');
+        Route::post('/application/store',[ApplicationController::class,'store'])->name('application.store')->middleware('studentStatus');
+        Route::get('/application/delete/{id}',[ApplicationController::class,'delete'])->name('application.delete')->middleware('studentStatus');
+
+        Route::get('/student/index',[StudentController::class,'index'])->name('student.index')->middleware('isStatus');
+        Route::get('/student/delete/{id}',[StudentController::class,'delete'])->name('student.delete')->middleware('isStatus');
+        Route::get('/student/edit/{id}',[StudentController::class,'edit'])->name('student.edit')->middleware('isStatus');
+
+        Route::post('/student/store',[StudentController::class,'store'])->name('student.store')->middleware('isStatus');
+
+
     });
 });

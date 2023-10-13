@@ -71,7 +71,7 @@
                                 <div class="col-xl-6 col-md-6">
                                     <div>
                                         <label for="labelInput" class="form-label">Telefon</label>
-                                        <input type="text"  name="phone" placeholder="Telefon Numarası" class="form-control" value="{{ old('phone') }}">
+                                        <input type="text"  name="phone" class="form-control" value="{{ old('phone') }}" id="cleave-phone" placeholder="(xxx)xxx-xxxx">
                                         <span class="text-danger">
                                     @error('phone')
                                             {{ $message }}
@@ -155,3 +155,10 @@
 
 
 
+@section('addjs')
+
+    <script src="{{asset('backend/assets/libs/cleave.js/addons/cleave-phone.ve.js')}}"></script>
+    <script src="{{asset('backend/assets/libs/cleave.js/cleave.min.js')}}"></script>
+    <script src="{{asset('backend/assets/js/pages/form-masks.init.js')}}"></script>
+
+@endsection

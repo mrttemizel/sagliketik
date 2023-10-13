@@ -60,7 +60,7 @@ class UserController extends Controller
 
     public function index()
     {
-        $data = User::all()->whereBetween('status', [0, 1]);
+        $data = User::all()->whereNotIn('status',[2]);
         return view('backend.user.index', compact('data'));
     }
 
@@ -148,32 +148,64 @@ class UserController extends Controller
         );
 
         $data = User::where('id', $request->input('id'))->first();
-        if ($data->email == $request->input('email')) {
-            $request->validate([
-                'name' => 'required',
-                'email' => 'required|string|email|max:255',
-                'status' => 'required',
-            ]);
-        } else {
-            $request->validate([
-                'name' => 'required',
-                'email' => 'required|string|email|max:255|unique:users',
-                'status' => 'required',
-            ]);
+
+        if ($data->status == 3){
+            if ($data->email == $request->input('email')) {
+                $request->validate([
+                    'name' => 'required',
+                    'email' => 'required|string|email|max:255',
+
+                ]);
+            } else {
+                $request->validate([
+                    'name' => 'required',
+                    'email' => 'required|string|email|max:255|unique:users',
+
+                ]);
+            }
+
+            $data->name = $request->input('name');
+            $data->email = $request->input('email');
+            $data->phone = $request->input('phone');
+            $data->status = 3;
+
+            $query = $data->update();
+
+
+            if (!$query) {
+                return redirect()->route('users.index')->with($notification_error);
+            } else {
+                return redirect()->route('users.index')->with($notification_success);
+            }
+        }else{
+            if ($data->email == $request->input('email')) {
+                $request->validate([
+                    'name' => 'required',
+                    'email' => 'required|string|email|max:255',
+                    'status' => 'required',
+                ]);
+            } else {
+                $request->validate([
+                    'name' => 'required',
+                    'email' => 'required|string|email|max:255|unique:users',
+                    'status' => 'required',
+                ]);
+            }
+
+            $data->name = $request->input('name');
+            $data->email = $request->input('email');
+            $data->phone = $request->input('phone');
+            $data->status = $request->status;
+
+            $query = $data->update();
+
+            if (!$query) {
+                return redirect()->route('users.index')->with($notification_error);
+            } else {
+                return redirect()->route('users.index')->with($notification_success);
+            }
         }
 
-        $data->name = $request->input('name');
-        $data->email = $request->input('email');
-        $data->phone = $request->input('phone');
-        $data->status = $request->status;
-
-        $query = $data->update();
-
-        if (!$query) {
-            return back()->with($notification_error);
-        } else {
-            return back()->with($notification_success);
-        }
     }
 
 

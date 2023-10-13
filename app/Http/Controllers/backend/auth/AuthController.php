@@ -26,6 +26,7 @@ class AuthController extends Controller
 
         $request->validate([
             'name' => 'required',
+            'phone' => 'required',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|min:8|confirmed',
             'password_confirmation' => 'required',
@@ -34,9 +35,10 @@ class AuthController extends Controller
         $data = new User();
         $data -> email = $request->input('email');
         $data -> name = $request->input('name');
+        $data -> phone = $request->input('phone');
         $data -> password = Hash::make($request->input('password'));
         $data -> status = 3;
-        $login_link = url('/login');
+        $login_link = url('/');
         $subject = 'Sağlık Etik Kurulu';
         Mail::to($request->email)->send(new UserRegisterMail($subject , $login_link));
 
@@ -74,7 +76,13 @@ class AuthController extends Controller
         );
 
         if(Auth::attempt($credential)){
-            return redirect()->route('auth.index')->with($notification);
+            if (Auth::user()->status == 3)
+            {
+                return redirect()->route('forms.index')->with($notification);
+            }
+            else{
+                return redirect()->route('auth.index')->with($notification);
+            }
         } else {
             return back()->with('error','Girilen Bilgiler Doğru Değil!');
         }
@@ -89,7 +97,7 @@ class AuthController extends Controller
         );
 
         Auth::logout();
-        return redirect()->route('auth.login')->with($notification);;
+        return redirect()->route('auth.login')->with($notification);
     }
 
 

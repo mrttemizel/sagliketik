@@ -1,6 +1,6 @@
 @extends('backend.components.master')
 @section('title')
-    Kullanıcı Ekle
+    Kullanıcı Listesi
 @endsection
 @section('css')
     <link href="{{asset('backend/assets/libs/sweetalert2/sweetalert2.min.css')}}" rel="stylesheet" type="text/css" />
@@ -76,8 +76,10 @@
                                                 <td><h6 class="text-success fs-13 mb-0">Süper Admin</h6></td>
                                             @elseif($datas->status == 1 )
                                                 <td><h6 class="text-success fs-13 mb-0">Yönetici</h6></td>
+                                            @elseif($datas->status == 3 )
+                                                <td><h6 class="text-danger fs-13 mb-0">Başvuru Yapan Kişi</h6></td>
                                             @else
-                                                <td><h6 class="text-success fs-13 mb-0">Kullanıcı</h6></td>
+                                                <td><h6 class="text-info fs-13 mb-0">Kullanıcı</h6></td>
                                             @endif
                                             <td>
                                                 <div class="hstack gap-3 fs-15">

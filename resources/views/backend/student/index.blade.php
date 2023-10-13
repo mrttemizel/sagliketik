@@ -17,7 +17,7 @@
             Başvurular
         @endslot
         @slot('title')
-            {{Auth::user()->status == 3 ? 'Başvurularım' : 'Başvurular'}}
+            Başvurular
         @endslot
     @endcomponent
 
@@ -26,7 +26,7 @@
             @if (session()->get('success'))
                 <div class="alert alert-success alert-dismissible alert-solid alert-label-icon fade show"
                      role="alert">
-                    <i class="ri-check-double-line label-icon"></i><strong>  {{ session()->get('success') }}</strong></strong>
+                    <i class="ri-check-double-line label-icon"></i><strong>  {{ session()->get('success') }}</strong>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert"
                             aria-label="Close"></button>
                 </div>
@@ -34,7 +34,7 @@
             @if (session()->get('error'))
                 <div class="alert alert-danger alert-dismissible alert-solid alert-label-icon fade show"
                      role="alert">
-                    <i class="ri-check-double-line label-icon"></i><strong>  {{ session()->get('error') }}</strong></strong>
+                    <i class="ri-check-double-line label-icon"></i><strong>  {{ session()->get('error') }}</strong>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert"
                             aria-label="Close"></button>
                 </div>
@@ -42,31 +42,21 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="card">
-
                             <div class="card-header d-flex justify-content-between align-items-center">
-                                <h5 class="card-title mb-0"> Başvurularımı Listele</h5>
+                                <h5 class="card-title mb-0"> Başvuruları Listele</h5>
 
 
-                                    <a href="{{ route('application.create') }}" class="btn btn-primary waves-effect waves-light d-flex justify-content-between"><i class="ri-add-box-line"></i> &nbsp; Yeni Başvuru Yap</a>
-
-
-
-                            </div>
-                            <div class="col-xl-12 col-md-12">
-                                <!-- Danger Alert -->
-                                <div class="alert alert-danger alert-dismissible border-2 bg-body-secondary fade show" role="alert">
-                                    <strong>ÖNEMLİ</strong> - Başvuruyu durumu onaylanan başvurularda silme işlemini <b>yapılamamaktadır!</b>
-                                </div>
-                                <!-- end card -->
                             </div>
                             <div class="card-body">
-                                <table id="datatable" class="table table-striped table-bordered" style="width:100%">
+                                <table id="datatable" class="table nowrap dt-responsive align-middle table-hover table-bordered" style="width:100%">
 
                                 <thead>
                                     <tr>
                                         <th>SR No.</th>
                                         <th>Başvuru No</th>
                                         <th>Başvuru Yapan Kişi</th>
+                                        <th>Başvuru Yapan E-Posta</th>
+                                        <th>Başvuru Yapan Telefon</th>
                                         <th>Başvuru Tarihi</th>
                                         <th>Başvuru Durumu</th>
                                         <th>Başvuru Dosya Kontrol Listesi</th>
@@ -97,8 +87,12 @@
                                             <td>{{$i}}</td>
                                             <td>{{$datas->basvuru_id}}</td>
                                             <td>{{$datas->getUser->name}}</td>
+                                            <td>{{$datas->getUser->email}}</td>
+                                            <td>{{$datas->getUser->phone}}</td>
                                             <td>{{$datas->created_at->format('d-m-Y')}}</td>
-                                            @if ($datas->basvuru_durumu == 0 )
+
+
+                                        @if ($datas->basvuru_durumu == 0 )
                                                 <td><span class="badge border border-secondary text-secondary">İNCELEMEDE</span></td>
                                             @elseif($datas->basvuru_durumu == 1 )
                                                 <td><span class="badge border border-success text-success">ONAYLANDI</span></td>
@@ -226,7 +220,8 @@
                                             </td>
                                             <td>
                                                 <div class="hstack gap-3 fs-15">
-                                                    <a href="javascript:void(0)"  data-url={{route('application.delete', ['id'=>$datas->id]) }} data-id={{ $datas->id }} class="link-danger" id="delete_application"><i class="ri-delete-bin-5-line"></i></a>
+                                                    <a href="{{route('student.edit',['id' => $datas->id])}}" class="link-primary"><i class="ri-settings-4-line"></i></a>
+                                                    <a href="javascript:void(0)"  data-url={{route('student.delete', ['id'=>$datas->id]) }} data-id={{ $datas->id }} class="link-danger" id="delete_student"><i class="ri-delete-bin-5-line"></i></a>
                                                 </div>
                                             </td>
                                         </tr>
@@ -259,7 +254,7 @@
 
 
     <script>
-        $(document).on('click', '#delete_application', function () {
+        $(document).on('click', '#delete_student', function () {
             var user_id = $(this).attr('data-id');
             const url = $(this).attr('data-url');
             Swal.fire({
@@ -279,10 +274,19 @@
         });
 
         $('#datatable').DataTable( {
+            responsive: {
+                details: {
+                    display: DataTable.Responsive.display.modal({
+                        header: function (row) {
+                            var data = row.data();
+                            return data[2] + ' -'+ ' Başvuru Kodu : ' + data[1];
+                        }
+                    }),
+                    renderer: DataTable.Responsive.renderer.tableAll()
+                }
 
-            paging: true,
-            scrollX: true,
-            fixedHeader: {headerOffset: 45},
+            },
+
 
             "lengthMenu": [[1, 10, 25, 50, 100, -1], [1, 10, 25, 50, 100, "Hepsi"]],
             "iDisplayLength":25,

@@ -78,7 +78,7 @@
                                         </div>
 
                                         <div class="text-center mt-4">
-                                            <button class="btn btn-success w-100" type="submit">Sıfırlama Linki
+                                            <button class="btn btn-success w-100" id="reset_button" type="submit">Sıfırlama Linki
                                                 Gönder</button>
                                         </div>
                                     </form><!-- end form -->
@@ -104,4 +104,12 @@
 
     </div>
     <!-- end auth-page-wrapper -->
+@endsection
+@section('addjs')
+    <script>
+        $(document).on('click', '#reset_button', function () {
+            $('#reset_button').html('Sıfırlama E-Postası Gönderiliyor...');
+            $('#reset_button').addClass("disabled");
+        });
+    </script>
 @endsection

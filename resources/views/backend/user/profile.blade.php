@@ -37,12 +37,14 @@
                                 </div>
                             </div>
                             <h5 class="fs-16 mb-1">{{ Auth::user()->name }}</h5>
-                            <p class="text-muted mb-0">     @if (Auth::user()->status == 2 )
-                                    Super Admin
-                                @elseif(Auth::user()->status == 1 )
+                            <p class="text-muted mb-0">       @if (Auth::user()->status == 1 )
                                     Yönetici
+                                @elseif(Auth::user()->status == 2 )
+                                    Super Admin
+                                @elseif(Auth::user()->status == 0 )
+                                    Editör
                                 @else
-                                    Editor
+                                    User
                                 @endif</p>
                         </div>
                     </div>
@@ -102,7 +104,8 @@
                                         <div class="col-lg-6">
                                             <div class="mb-3">
                                                 <label for="phonenumberInput" class="form-label">Telefon Numarası :</label>
-                                                <input type="text" class="form-control" name="phone" placeholder="Telefon Numarası" value="{{Auth::user()->phone}}">
+
+                                                <input type="text"  name="phone" class="form-control" value="{{Auth::user()->phone}}" id="cleave-phone" placeholder="(xxx)xxx-xxxx">
                                             </div>
                                         </div>
                                         <!--end col-->
@@ -195,8 +198,11 @@
     <script src="{{ asset('backend/assets/js/pages/sweetalerts.init.js') }}"></script>
     <script src="{{ asset('backend/assets/js/pages/profile-setting.init.js') }}"></script>
 
-
+    <script src="{{asset('backend/assets/libs/cleave.js/addons/cleave-phone.ve.js')}}"></script>
+    <script src="{{asset('backend/assets/libs/cleave.js/cleave.min.js')}}"></script>
+    <script src="{{asset('backend/assets/js/pages/form-masks.init.js')}}"></script>
     <script>
+
 
         $(document).ready(function() {
 

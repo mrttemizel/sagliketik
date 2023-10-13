@@ -42,9 +42,11 @@
                                 <span class="d-none d-xl-inline-block ms-1 fw-medium user-name-text">{{ Auth::user()->name }}</span>
                                 <span class="d-none d-xl-block ms-1 fs-12 text-muted user-name-sub-text">
                                     @if (Auth::user()->status == 1 )
-                                        Super Admin
+                                        Yönetici
                                     @elseif(Auth::user()->status == 2 )
-                                        Admin
+                                        Super Admin
+                                    @elseif(Auth::user()->status == 0 )
+                                        Editör
                                     @else
                                         User
                                     @endif
@@ -55,12 +57,8 @@
                     <div class="dropdown-menu dropdown-menu-end">
                         <!-- item-->
                         <h6 class="dropdown-header">Welcome</h6>
-                        <a class="dropdown-item" href="{{route('user.profile')}}"><i class="mdi mdi-account-circle text-muted fs-16 align-middle me-1"></i> <span class="align-middle">Profile</span></a>
-                        <a class="dropdown-item" href="apps-chat.html"><i class="mdi mdi-message-text-outline text-muted fs-16 align-middle me-1"></i> <span class="align-middle">Messages</span></a>
-                        <a class="dropdown-item" href="apps-tasks-kanban.html"><i class="mdi mdi-calendar-check-outline text-muted fs-16 align-middle me-1"></i> <span class="align-middle">Taskboard</span></a>
-                        <a class="dropdown-item" href="pages-faqs.html"><i class="mdi mdi-lifebuoy text-muted fs-16 align-middle me-1"></i> <span class="align-middle">Help</span></a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="{{route('auth.logout')}}"><i class="mdi mdi-logout text-muted fs-16 align-middle me-1"></i> <span class="align-middle" data-key="t-logout">Logout</span></a>
+                        <a class="dropdown-item" href="{{route('user.profile')}}"><i class="mdi mdi-account-circle text-muted fs-16 align-middle me-1"></i> <span class="align-middle">Profil Düzenle</span></a>
+                        <a class="dropdown-item" href="{{route('auth.logout')}}"><i class="mdi mdi-logout text-muted fs-16 align-middle me-1"></i> <span class="align-middle" data-key="t-logout">Çıkış Yap</span></a>
 
 
                     </div>

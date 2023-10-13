@@ -61,17 +61,7 @@
                                     <form action="{{route('auth.store')}}" method="POST">
                                         @csrf
                                         <div class="mb-3">
-                                            <label for="email" class="form-label">E-Posta Adresi :</label>
-                                            <input type="email" name="email" value="{{ old('email') }}"
-                                                   class="form-control" placeholder="E-posta Adresiniz">
-                                            <span class="text-danger">
-                                                @error('email')
-                                                {{ $message }}
-                                                @enderror
-                                            </span>
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="name" class="form-label">Ad Soyad :</label>
+                                            <label for="name" class="form-label">Ad Soyad : <span class="text-danger">*</span></label>
                                             <input type="text" name="name" value="{{ old('name') }}"
                                                    class="form-control" placeholder="Ad ve Soyad">
                                             <span class="text-danger">
@@ -81,7 +71,27 @@
                                             </span>
                                         </div>
                                         <div class="mb-3">
-                                            <label for="password" class="form-label">Şifre :</label>
+                                            <label for="email" class="form-label">E-Posta Adresi : <span class="text-danger">*</span></label>
+                                            <input type="email" name="email" value="{{ old('email') }}"
+                                                   class="form-control" placeholder="E-posta Adresiniz">
+                                            <span class="text-danger">
+                                                @error('email')
+                                                {{ $message }}
+                                                @enderror
+                                            </span>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="phone" class="form-label">Telefon : <span class="text-danger">*</span></label>
+                                            <input type="text"  name="phone" class="form-control" value="{{ old('phone') }}" id="cleave-phone" placeholder="(xxx)xxx-xxxx">
+                                            <span class="text-danger">
+                                                @error('phone')
+                                                {{ $message }}
+                                                @enderror
+                                            </span>
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label for="password" class="form-label">Şifre : <span class="text-danger">*</span></label>
                                             <input type="password" name="password" value="{{ old('password') }}"
                                                    class="form-control" placeholder="Şifre">
                                             <span class="text-danger">
@@ -91,7 +101,7 @@
                                             </span>
                                         </div>
                                         <div class="mb-3">
-                                            <label for="password_confirmation" class="form-label">Şifre Tekrar :</label>
+                                            <label for="password_confirmation" class="form-label">Şifre Tekrar : <span class="text-danger">*</span></label>
                                             <input type="password" name="password_confirmation" value="{{ old('password_confirmation') }}"
                                                    class="form-control" placeholder="Şifre Tekrar">
                                             <span class="text-danger">
@@ -101,7 +111,7 @@
                                             </span>
                                         </div>
                                         <div class="mt-4">
-                                            <button class="btn btn-info w-100" type="submit">Kayıt Ol</button>
+                                            <button class="btn btn-info w-100" id="kayit_ol_button" type="submit">Kayıt Ol</button>
                                         </div>
 
                                     </form>
@@ -136,3 +146,17 @@
 
 @endsection
 
+@section('addjs')
+
+    <script src="{{asset('backend/assets/libs/cleave.js/addons/cleave-phone.ve.js')}}"></script>
+    <script src="{{asset('backend/assets/libs/cleave.js/cleave.min.js')}}"></script>
+    <script src="{{asset('backend/assets/js/pages/form-masks.init.js')}}"></script>
+
+
+    <script>
+        $(document).on('click', '#kayit_ol_button', function () {
+            $('#kayit_ol_button').html('Kayıt Yapılıyor...');
+            $('#kayit_ol_button').addClass("disabled");
+        });
+    </script>
+@endsection
