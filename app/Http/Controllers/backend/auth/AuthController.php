@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Mail\Websiteemail;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Hash;
+use App\Charts\MonthlyUsersChart;
 
 use Illuminate\Http\RedirectResponse;
 class AuthController extends Controller
@@ -51,8 +52,8 @@ class AuthController extends Controller
         }
 
     }
-    public function index(){
-        return view('backend.index');
+    public function index(MonthlyUsersChart $chart){
+        return view('backend.index',['chart' => $chart->build()]);
     }
 
     public function reset_password_page(){

@@ -308,8 +308,8 @@
                                             <label for="labelInput" class="form-label">Proje Kabul Durumu <span class="text-danger"> *</span></label>
                                             <select class="form-select" name="basvuru_durumu"  aria-label="Default select example">
                                                 <option selected disabled>Proje Kabul Durumu Seçiniz</option>
-                                                <option value="1">Onaylandı</option>
-                                                <option value="2">Reddedildi</option>
+                                                <option value="1" {{ $data->basvuru_durumu == 1 ? 'selected' : '' }}>Onaylandı</option>
+                                                <option value="2" {{ $data->basvuru_durumu == 2 ? 'selected' : '' }}>Reddedildi</option>
                                             </select>
                                             <span class="text-danger">
                                     @error('basvuru_durumu')
@@ -322,7 +322,7 @@
                                         <!-- Example Textarea -->
                                         <div>
                                             <label for="exampleFormControlTextarea5" class="form-label">Bilgilendirme E-Postası <span class="text-danger"> *</span></label>
-                                            <textarea class="form-control" id="exampleFormControlTextarea5"  name="degerlendirme" rows="3"></textarea>
+                                            <textarea class="form-control" id="exampleFormControlTextarea5"  name="degerlendirme" rows="3">{{$data->degerlendirme}}</textarea>
                                             <span class="text-danger">
                                     @error('degerlendirme')
                                                 {{ $message }}
@@ -332,7 +332,7 @@
 
                                     <div class="col-lg-12 mt-3">
                                         <div class="hstack gap-2 justify-content-end">
-                                            <button type="submit" class="btn btn-primary">Değerlendirme Gönder</button>
+                                            <button type="submit" class="btn btn-primary" id="degerlendirme_yap">Değerlendirme Gönder</button>
                                         </div>
                                     </div>
                                 </div>
@@ -350,9 +350,9 @@
 
 @section('addjs')
     <script>
-        $(document).on('click', '#basvuru_yap', function () {
-            $('#basvuru_yap').html('Başvuru Yapılıyor...');
-            $('#basvuru_yap').addClass("disabled");
+        $(document).on('click', '#degerlendirme_yap', function () {
+            $('#degerlendirme_yap').html('Değerlendirme Gönderiliyor...');
+            $('#degerlendirme_yap').addClass("disabled");
         });
     </script>
 @endsection

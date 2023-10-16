@@ -59,6 +59,7 @@
                                         <th>Başvuru Yapan Telefon</th>
                                         <th>Başvuru Tarihi</th>
                                         <th>Başvuru Durumu</th>
+                                        <th>Başvuru Değerlendirme Mesajınız</th>
                                         <th>Başvuru Dosya Kontrol Listesi</th>
                                         <th>Başvuru Dilekcesi</th>
                                         <th>Etik Kurul Başvuru Formu</th>
@@ -99,6 +100,17 @@
                                             @else
                                                 <td><span class="badge border border-danger text-danger">REDDEDİLDİ</span></td>
                                             @endif
+                                            <td>
+                                                @if(empty($datas->degerlendirme))
+                                                    <p style="color: #3478F1">Değerlendirme Yapmanız Beklenmektedir.</p>
+                                                @else
+                                                    @if($datas->basvuru_durumu == 1)
+                                                        <p style="color: green">{{$datas->degerlendirme}}</p>
+                                                    @else
+                                                        <p style="color: red">{{$datas->degerlendirme}}</p>
+                                                    @endif
+                                                @endif
+                                            </td>
                                             <td>
                                                 @if(empty($datas->basvuru_dosya_kontrol_listesi))
                                                     Belge Yüklenmemiş

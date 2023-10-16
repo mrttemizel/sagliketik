@@ -3,7 +3,7 @@
     <div class="navbar-brand-box">
 
         <!-- Light Logo-->
-        <a href="index.html" class="logo logo-light">
+        <a href="#" class="logo logo-light">
                     <span class="logo-sm">
                         <img src="{{asset('backend/my-image/abu-beyaz-dikey.svg')}}" alt="" height="40">
                     </span>

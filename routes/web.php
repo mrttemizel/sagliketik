@@ -42,14 +42,14 @@ Route::middleware('auth')->group(function (){
         Route::post('/profile/profile-information-update',[UserController::class,'profile_information_update'])->name('users.profile.information.update');
         Route::post('/profile/profile-password-update',[UserController::class,'profile_password_update'])->name('users.profile.password.update');
 
-        Route::get('/users/create',[UserController::class,'create'])->name('users.create')->middleware('isStatus');
-        Route::post('/users/store',[UserController::class,'store'])->name('users.store')->middleware('isStatus');
-        Route::get('/users/index',[UserController::class,'index'])->name('users.index')->middleware('isStatus');
-        Route::get('/users/delete/{id}',[UserController::class,'delete'])->name('users.delete')->middleware('isStatus');
-        Route::get('/users/edit/{id}',[UserController::class,'edit'])->name('users.edit')->middleware('isStatus');
-        Route::post('/user/image-update',[UserController::class,'image_update'])->name('users.image.update')->middleware('isStatus');
-        Route::post('/user/information-update',[UserController::class,'information_update'])->name('users.information.update')->middleware('isStatus');
-        Route::post('/user/password-update',[UserController::class,'password_update'])->name('users.password.update')->middleware('isStatus');
+        Route::get('/users/create',[UserController::class,'create'])->name('users.create')->middleware('isStatus','adminStatus');
+        Route::post('/users/store',[UserController::class,'store'])->name('users.store')->middleware('isStatus','adminStatus');
+        Route::get('/users/index',[UserController::class,'index'])->name('users.index')->middleware('isStatus','adminStatus');
+        Route::get('/users/delete/{id}',[UserController::class,'delete'])->name('users.delete')->middleware('isStatus','adminStatus');
+        Route::get('/users/edit/{id}',[UserController::class,'edit'])->name('users.edit')->middleware('isStatus','adminStatus');
+        Route::post('/user/image-update',[UserController::class,'image_update'])->name('users.image.update')->middleware('isStatus','adminStatus');
+        Route::post('/user/information-update',[UserController::class,'information_update'])->name('users.information.update')->middleware('isStatus','adminStatus');
+        Route::post('/user/password-update',[UserController::class,'password_update'])->name('users.password.update')->middleware('isStatus','adminStatus');
 
 
         Route::get('/forms/index',[FormController::class,'index'])->name('forms.index')->middleware('studentStatus');

@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Application;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Mail\DegerlendirmeMail;
+use Illuminate\Support\Facades\Mail;
 
 class StudentController extends Controller
 {
@@ -64,7 +66,44 @@ class StudentController extends Controller
 
     public function store(Request $request)
     {
-        dd($request->all());
+        $notification_success = array(
+            'message' => 'Güncelleme Başarılı',
+            'alert-type' => 'success'
+        );
+
+        $notification_error = array(
+            'message' => 'Güncelleme Başarısız',
+            'alert-type' => 'error'
+        );
+
+        $data = Application::where('id', $request->id)->first();
+
+        $data->basvuru_durumu = $request->input('basvuru_durumu');
+        $data->degerlendirme = $request->input('degerlendirme');
+
+        if ($request->input('basvuru_durumu') == 1){
+             $degerlendirme_durumu = 'Projeniz Onaylanmıştır.';
+             $status = 1;
+            }
+            else{
+                $degerlendirme_durumu = 'Projeniz Reddedilmiştir.';
+                $status = 2;
+            }
+        $mailData = [
+
+          'title' => $degerlendirme_durumu,
+          'subject' => $request->input('degerlendirme'),
+            'status' => $status,
+        ];
+
+        Mail::to('mrttemizel@gmail.com')->send(new DegerlendirmeMail($mailData));
+        $query = $data->update();
+
+        if (!$query) {
+            return back()->with($notification_error);
+        } else {
+            return redirect()->route('student.index')->with($notification_success);
+        }
     }
 
 }

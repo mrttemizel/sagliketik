@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
-class isStatus
+class adminStatus
 {
     /**
      * Handle an incoming request.
@@ -16,9 +16,7 @@ class isStatus
      */
     public function handle(Request $request, Closure $next): Response
     {
-
-
-        if (Auth::user()->status==1 || Auth::user()->status==2 || Auth::user()->status==0 )
+        if (Auth::user()->status==1 || Auth::user()->status==2 )
         {
             return $next($request);
         }

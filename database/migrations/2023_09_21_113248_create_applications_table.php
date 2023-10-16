@@ -31,7 +31,7 @@ return new class extends Migration
             $table->string('ek_1')->nullable();
             $table->string('ek_2')->nullable();
             $table->string('ek_3')->nullable();
-            $table->longText('degerlendime')->nullable();
+            $table->longText('degerlendirme')->nullable();
 
             $table->string("basvuru_durumu");
 

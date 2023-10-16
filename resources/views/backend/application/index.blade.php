@@ -69,6 +69,7 @@
                                         <th>Başvuru Yapan Kişi</th>
                                         <th>Başvuru Tarihi</th>
                                         <th>Başvuru Durumu</th>
+                                        <th>Başvuru Değerlendirme</th>
                                         <th>Başvuru Dosya Kontrol Listesi</th>
                                         <th>Başvuru Dilekcesi</th>
                                         <th>Etik Kurul Başvuru Formu</th>
@@ -105,6 +106,13 @@
                                             @else
                                                 <td><span class="badge border border-danger text-danger">REDDEDİLDİ</span></td>
                                             @endif
+                                            <td>
+                                                @if(empty($datas->degerlendirme))
+                                                    Henüz Değerlendirme Yapılmamıştır.
+                                                @else
+                                                    {{$datas->degerlendirme}}
+                                                @endif
+                                            </td>
                                             <td>
                                                 @if(empty($datas->basvuru_dosya_kontrol_listesi))
                                                     Belge Yüklenmemiş
