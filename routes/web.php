@@ -21,8 +21,8 @@ use Illuminate\Support\Facades\Route;
 
 
 
-Route::get('/',[AuthController::class,'login'])->name('auth.login');
-Route::get('/create',[AuthController::class,'create'])->name('auth.create');
+Route::get('/login',[AuthController::class,'login'])->name('auth.login');
+Route::get('/',[AuthController::class,'create'])->name('auth.create');
 Route::post('/store',[AuthController::class,'store'])->name('auth.store');
 Route::post('/login-submit',[AuthController::class,'login_submit'])->name('auth.login-submit');
 Route::get('/reset-password',[AuthController::class,'reset_password_page'])->name('auth.reset_password');

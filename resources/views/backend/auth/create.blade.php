@@ -110,6 +110,16 @@
                                                 @enderror
                                             </span>
                                         </div>
+
+                                        <div class="mb-3">
+
+                                            <div id="recaptcha_form_register"></div>
+                                            <span class="text-danger">
+                                            @error('g-recaptcha-response')
+                                            {{ $message }}
+                                            @enderror
+
+                                        </div>
                                         <div class="mt-4">
                                             <button class="btn btn-info w-100" id="kayit_ol_button" type="submit">Kayıt Ol</button>
                                         </div>
@@ -159,4 +169,6 @@
             $('#kayit_ol_button').addClass("disabled");
         });
     </script>
+
+    {!!  GoogleReCaptchaV2::render('recaptcha_form_register') !!}
 @endsection

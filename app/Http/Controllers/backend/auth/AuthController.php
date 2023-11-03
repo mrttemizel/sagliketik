@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Hash;
 use App\Charts\MonthlyUsersChart;
 
+use TimeHunter\LaravelGoogleReCaptchaV2\Validations\GoogleReCaptchaV2ValidationRule;
+
 use Illuminate\Http\RedirectResponse;
 class AuthController extends Controller
 {
@@ -31,6 +33,7 @@ class AuthController extends Controller
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|min:8|confirmed',
             'password_confirmation' => 'required',
+            'g-recaptcha-response' => [new GoogleReCaptchaV2ValidationRule()]
         ]);
 
         $data = new User();
@@ -64,6 +67,8 @@ class AuthController extends Controller
         $request->validate([
             'email' => 'required|email',
             'password' => 'required',
+            'g-recaptcha-response' => [new GoogleReCaptchaV2ValidationRule()]
+
         ]);
 
         $credential = [

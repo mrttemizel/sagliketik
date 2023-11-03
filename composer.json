@@ -11,7 +11,8 @@
         "haruncpi/laravel-id-generator": "^1.1",
         "laravel/framework": "^10.10",
         "laravel/sanctum": "^3.2",
-        "laravel/tinker": "^2.8"
+        "laravel/tinker": "^2.8",
+        "timehunter/laravel-google-recaptcha-v2": "^1.0"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",

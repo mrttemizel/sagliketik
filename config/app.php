@@ -168,6 +168,9 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        TimeHunter\LaravelGoogleReCaptchaV2\Providers\GoogleReCaptchaV2ServiceProvider::class
+
+
     ])->toArray(),
 
     /*
@@ -182,7 +185,7 @@ return [
     */
 
     'aliases' => Facade::defaultAliases()->merge([
-        // 'Example' => App\Facades\Example::class,
+        'GoogleReCaptchaV2'=> TimeHunter\LaravelGoogleReCaptchaV2\Facades\GoogleReCaptchaV2::class
     ])->toArray(),
 
 ];

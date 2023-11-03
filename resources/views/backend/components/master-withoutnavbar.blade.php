@@ -11,6 +11,8 @@
     <!-- App favicon -->
     <link rel="shortcut icon" href="{{asset('backend/my-image/favicon.png')}}">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+
+
     @include('backend.components._partials._head-css')
 </head>
 

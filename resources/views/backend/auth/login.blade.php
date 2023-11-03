@@ -93,6 +93,18 @@
                                             </div>
 
                                         </div>
+
+                                        <div class="mb-3">
+
+                                        <div id="recaptcha_form"></div>
+                                            <span class="text-danger">
+                                                    @error('g-recaptcha-response')
+                                                {{ $message }}
+                                                    @enderror
+
+                                        </div>
+
+
                                         <div class="mt-4">
                                             <button class="btn btn-info w-100"  id="login_button" type="submit">Giriş Yap</button>
                                         </div>
@@ -123,10 +135,14 @@
 @endsection
 
         @section('addjs')
+
+
             <script>
                 $(document).on('click', '#login_button', function () {
                     $('#login_button').html('Giriş Yapılıyor...');
                     $('#login_button').addClass("disabled");
                 });
             </script>
+    {!!  GoogleReCaptchaV2::render('recaptcha_form') !!}
+
 @endsection
