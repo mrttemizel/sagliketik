@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\backend\application;
 
 use App\Http\Controllers\Controller;
+use App\Mail\ApplicationStoreMail;
 use App\Models\Application;
 use Illuminate\Http\Request;
 use Haruncpi\LaravelIdGenerator\IdGenerator;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class ApplicationController extends Controller
 {
@@ -28,7 +30,7 @@ class ApplicationController extends Controller
         $path7 = public_path() . '/etik/' . $data->saglikli_cocuk_onam_formu;
         $path8 = public_path() . '/etik/' . $data->bilgilendirilmis_gonullu_goruntu_ve_ses;
         $path9 = public_path() . '/etik/' . $data->ozgecmis;
-        $path10 = public_path() . '/etik/' . $data->ilgili_abd_bilgilendirme_beyani;
+
         $path11= public_path() . '/etik/' . $data->covid_genelgesi_taahhutnamesi;
         $path12 = public_path() . '/etik/' . $data->biyolojik_meteryal_transfer_formu;
         $path13 = public_path() . '/etik/' . $data->multidisipliner_arastirma_onay_formu;
@@ -37,13 +39,14 @@ class ApplicationController extends Controller
         $path16 = public_path() . '/etik/' . $data->ek_2;
         $path17 = public_path() . '/etik/' . $data->ek_3;
 
+        $path18 = public_path() . '/etik/' . $data->taahutname;
         if (Auth::user()->status == 3)
         {
             if ($data->basvuru_durumu == 1){
                 return back()->with('error', 'Onaylanan Projenizde Değişiklik Yapamazsınız!');
             }else{
-                if (\File::exists($path1,$path2,$path3,$path4,$path5,$path6,$path7,$path8,$path9,$path10,$path11,$path12,$path13,$path14,$path15,$path16,$path17)) {
-                    \File::delete($path1,$path2,$path3,$path4,$path5,$path6,$path7,$path8,$path9,$path10,$path11,$path12,$path13,$path14,$path15,$path16,$path17);
+                if (\File::exists($path1,$path2,$path3,$path4,$path5,$path6,$path7,$path8,$path9,$path11,$path12,$path13,$path14,$path15,$path16,$path17,$path18)) {
+                    \File::delete($path1,$path2,$path3,$path4,$path5,$path6,$path7,$path8,$path9,$path11,$path12,$path13,$path14,$path15,$path16,$path17,$path18);
                 }
 
                 $query = $data->delete();
@@ -72,26 +75,26 @@ class ApplicationController extends Controller
     public function store(Request $request)
     {
         $request->validate([
+            'basvuru_dosya_kontrol_listesi' => 'file|mimes:pdf,xlsx,docx,doc|max:5120',
+            'basvuru_dilekcesi' => 'required|file|mimes:pdf,xlsx,docx,doc|max:5120',
+            'etik_kurul_basvuru_formu' => 'required|file|mimes:pdf,xlsx,docx,doc|max:5120',
+            'bilgilendirilmis_gonullu_onam_formu' => 'required|file|mimes:pdf,xlsx,docx,doc|max:5120',
+            'cocuk_hasta_onam_formu' => 'file|mimes:pdf,xlsx,docx,doc|max:5120',
+            'ebeveyn_onam_formu' => 'file|mimes:pdf,xlsx,docx,doc|max:5120',
+            'saglikli_cocuk_onam_formu' => 'file|mimes:pdf,xlsx,docx,doc|max:5120',
+            'bilgilendirilmis_gonullu_goruntu_ve_ses' => 'file|mimes:pdf,xlsx,docx,doc|max:5120',
+            'ozgecmis' => 'required|file|mimes:pdf,xlsx,docx,doc|max:5120',
 
-            'basvuru_dosya_kontrol_listesi' => 'file|mimes:pdf,xlsx,docx,doc|max:10240',
-            'basvuru_dilekcesi' => 'file|mimes:pdf,xlsx,docx,doc|max:10240',
-            'etik_kurul_basvuru_formu' => 'file|mimes:pdf,xlsx,docx,doc|max:10240',
-            'bilgilendirilmis_gonullu_onam_formu' => 'file|mimes:pdf,xlsx,docx,doc|max:10240',
-            'cocuk_hasta_onam_formu' => 'file|mimes:pdf,xlsx,docx,doc|max:10240',
-            'ebeveyn_onam_formu' => 'file|mimes:pdf,xlsx,docx,doc|max:10240',
-            'saglikli_cocuk_onam_formu' => 'file|mimes:pdf,xlsx,docx,doc|max:10240',
-            'bilgilendirilmis_gonullu_goruntu_ve_ses' => 'file|mimes:pdf,xlsx,docx,doc|max:10240',
-            'ozgecmis' => 'file|mimes:pdf,xlsx,docx,doc|max:10240',
-            'ilgili_abd_bilgilendirme_beyani' => 'file|mimes:pdf,xlsx,docx,doc|max:10240',
-            'covid_genelgesi_taahhutnamesi' => 'file|mimes:pdf,xlsx,docx,doc|max:10240',
-            'biyolojik_meteryal_transfer_formu' => 'file|mimes:pdf,xlsx,docx,doc|max:10240',
-            'multidisipliner_arastirma_onay_formu' => 'file|mimes:pdf,xlsx,docx,doc|max:10240',
-            'degerlendirme_formu' => 'file|mimes:pdf,xlsx,docx,doc|max:10240',
-            'ek_1' => 'file|mimes:pdf,xlsx,docx,doc|max:10240',
-            'ek_2' => 'file|mimes:pdf,xlsx,docx,doc|max:10240',
-            'ek_3' => 'file|mimes:pdf,xlsx,docx,doc|max:10240',
-
-        ]);
+            'covid_genelgesi_taahhutnamesi' => 'required|file|mimes:pdf,xlsx,docx,doc|max:5120',
+            'biyolojik_meteryal_transfer_formu' => 'file|mimes:pdf,xlsx,docx,doc|max:5120',
+            'multidisipliner_arastirma_onay_formu' => 'file|mimes:pdf,xlsx,docx,doc|max:5120',
+            'degerlendirme_formu' => 'file|mimes:pdf,xlsx,docx,doc|max:5120',
+            'taahutname' => 'file|mimes:pdf,xlsx,docx,doc|max:5120',
+            'ek_1' => 'file|mimes:pdf,xlsx,docx,doc|max:5120',
+            'ek_2' => 'file|mimes:pdf,xlsx,docx,doc|max:5120',
+            'ek_3' => 'file|mimes:pdf,xlsx,docx,doc|max:5120',
+        ]
+        );
 
         $data = new Application();
         $basvuru_id = IdGenerator::generate(['table' => 'applications', 'field' => 'basvuru_id', 'length' => 10, 'prefix' => 'BSV-']);
@@ -165,13 +168,7 @@ class ApplicationController extends Controller
             $ozgecmis->move('etik/', $ozgecmis_name);
             $data->ozgecmis = $ozgecmis_name;
         }
-        if ($request->hasFile('ilgili_abd_bilgilendirme_beyani')) {
 
-            $ilgili_abd_bilgilendirme_beyani = $request->file('ilgili_abd_bilgilendirme_beyani');
-            $ilgili_abd_bilgilendirme_beyani_name = Auth::user()->name . '-' . 'IABD' . '-' . time() . '-' . uniqid() . '.' . $ilgili_abd_bilgilendirme_beyani->getClientOriginalExtension();
-            $ilgili_abd_bilgilendirme_beyani->move('etik/', $ilgili_abd_bilgilendirme_beyani_name);
-            $data->ilgili_abd_bilgilendirme_beyani = $ilgili_abd_bilgilendirme_beyani_name;
-        }
         if ($request->hasFile('covid_genelgesi_taahhutnamesi')) {
 
             $covid_genelgesi_taahhutnamesi = $request->file('covid_genelgesi_taahhutnamesi');
@@ -194,6 +191,13 @@ class ApplicationController extends Controller
             $data->multidisipliner_arastirma_onay_formu = $multidisipliner_arastirma_onay_formu_name;
         }
 
+        if ($request->hasFile('taahutname')) {
+
+            $taahutname = $request->file('taahutname');
+            $taahutname_name = Auth::user()->name . '-' . 'T' . '-' . time() . '-' . uniqid() . '.' . $taahutname->getClientOriginalExtension();
+            $taahutname->move('etik/', $taahutname);
+            $data->taahutname = $taahutname_name;
+        }
         if ($request->hasFile('degerlendirme_formu')) {
 
             $degerlendirme_formu = $request->file('degerlendirme_formu');
@@ -224,6 +228,9 @@ class ApplicationController extends Controller
         }
 
 
+
+        $subject = 'Sağlık Etik Kurulu';
+        Mail::to(Auth::user()->email)->send(new ApplicationStoreMail($subject));
         $query = $data->save();
 
         if (!$query) {

@@ -23,10 +23,10 @@ return new class extends Migration
             $table->string('saglikli_cocuk_onam_formu')->nullable();
             $table->string('bilgilendirilmis_gonullu_goruntu_ve_ses')->nullable();
             $table->string('ozgecmis')->nullable();
-            $table->string('ilgili_abd_bilgilendirme_beyani')->nullable();
             $table->string('covid_genelgesi_taahhutnamesi')->nullable();
             $table->string('biyolojik_meteryal_transfer_formu')->nullable();
             $table->string('multidisipliner_arastirma_onay_formu')->nullable();
+            $table->string('taahutname')->nullable();
             $table->string('degerlendirme_formu')->nullable();
             $table->string('ek_1')->nullable();
             $table->string('ek_2')->nullable();

@@ -49,7 +49,10 @@
                                 <div class="col-xl-12 col-md-12">
                                     <!-- Danger Alert -->
                                     <div class="alert alert-danger alert-dismissible border-2 bg-body-secondary fade show" role="alert">
-                                        <strong>ÖNEMLİ</strong> - Başvuruyu tamamla dedikten sonra, yüklemiş olduğunuz dosyalarda düzenleme <b>yapılamamaktadır!</b>
+                                        <strong>ÖNEMLİ 1</strong> - Başvuruyu tamamla dedikten sonra, yüklemiş olduğunuz dosyalarda düzenleme <b>yapılamamaktadır!</b><br>
+                                        <strong>ÖNEMLİ 2</strong> - Başında " * " işarati olan formlar, yüklemesi zorunlu olan <b>alanlardır!</b><br>
+                                        <strong>ÖNEMLİ 3</strong> - Yükleceğiniz dosya boyutu maksimum 5 MB <b>geçmemelidir!</b><br>
+                                        <strong>ÖNEMLİ 4</strong> - Yükleyebilceğiniz dosya tipleri <b>"pdf,xlsx,docx,doc".</b>
                                     </div>
                                     <!-- end card -->
                                 </div>
@@ -67,7 +70,7 @@
                                 </div>
                                 <div class="col-xl-12 col-md-12 mt-4">
                                     <div>
-                                        <label for="formFile" class="form-label">Başvuru Dilekçesi <span class="text-danger"> Yükleyebilceğiniz dosya tipleri <b>"pdf,xlsx,docx,doc"</b>.</span></label>
+                                        <label for="formFile" class="form-label"><span class="text-danger">*</span> Başvuru Dilekçesi <span class="text-danger"> Yükleyebilceğiniz dosya tipleri <b>"pdf,xlsx,docx,doc"</b>.</span></label>
                                         <input class="form-control"  type="file" name="basvuru_dilekcesi">
                                         <span class="text-danger">
                                     @error('basvuru_dilekcesi')
@@ -79,7 +82,7 @@
                                 </div>
                                 <div class="col-xl-12 col-md-12 mt-4">
                                     <div>
-                                        <label for="formFile" class="form-label">Etik Kurul Başvuru Formu <span class="text-danger"> Yükleyebilceğiniz dosya tipleri <b>"pdf,xlsx,docx,doc"</b>.</span></label>
+                                        <label for="formFile" class="form-label"><span class="text-danger">*</span> Etik Kurul Başvuru Formu <span class="text-danger"> Yükleyebilceğiniz dosya tipleri <b>"pdf,xlsx,docx,doc"</b>.</span></label>
                                         <input class="form-control"  type="file" name="etik_kurul_basvuru_formu">
                                         <span class="text-danger">
                                     @error('etik_kurul_basvuru_formu')
@@ -91,7 +94,7 @@
                                 </div>
                                 <div class="col-xl-12 col-md-12 mt-4">
                                     <div>
-                                        <label for="formFile" class="form-label">Bilgilendirilmiş Gönüllü Onam Formu <span class="text-danger"> Yükleyebilceğiniz dosya tipleri <b>"pdf,xlsx,docx,doc"</b>.</span></label>
+                                        <label for="formFile" class="form-label"><span class="text-danger">*</span> Bilgilendirilmiş Gönüllü Onam Formu <span class="text-danger"> Yükleyebilceğiniz dosya tipleri <b>"pdf,xlsx,docx,doc"</b>.</span></label>
                                         <input class="form-control"  type="file" name="bilgilendirilmis_gonullu_onam_formu">
                                         <span class="text-danger">
                                     @error('bilgilendirilmis_gonullu_onam_formu')
@@ -151,7 +154,7 @@
                                 </div>
                                 <div class="col-xl-12 col-md-12 mt-4">
                                     <div>
-                                        <label for="formFile" class="form-label">Özgeçmiş<span class="text-danger"> Yükleyebilceğiniz dosya tipleri <b>"pdf,xlsx,docx,doc"</b>.</span></label>
+                                        <label for="formFile" class="form-label"><span class="text-danger">*</span> Özgeçmiş<span class="text-danger"> Yükleyebilceğiniz dosya tipleri <b>"pdf,xlsx,docx,doc"</b>.</span></label>
                                         <input class="form-control"  type="file" name="ozgecmis">
                                         <span class="text-danger">
                                     @error('ozgecmis')
@@ -161,21 +164,9 @@
                                     </div>
                                     <!-- end card -->
                                 </div>
-                                <div class="col-xl-12 col-md-12 mt-4">
+                                                        <div class="col-xl-12 col-md-12 mt-4">
                                     <div>
-                                        <label for="formFile" class="form-label">İlgili ABD Bilgilendirme Beyanı<span class="text-danger"> Yükleyebilceğiniz dosya tipleri <b>"pdf,xlsx,docx,doc"</b>.</span></label>
-                                        <input class="form-control"  type="file" name="ilgili_abd_bilgilendirme_beyani">
-                                        <span class="text-danger">
-                                    @error('ilgili_abd_bilgilendirme_beyani')
-                                            {{ $message }}
-                                            @enderror
-                            </span>
-                                    </div>
-                                    <!-- end card -->
-                                </div>
-                                <div class="col-xl-12 col-md-12 mt-4">
-                                    <div>
-                                        <label for="formFile" class="form-label">Covid - Genelgesi - Taahhütnamesi<span class="text-danger"> Yükleyebilceğiniz dosya tipleri <b>"pdf,xlsx,docx,doc"</b>.</span></label>
+                                        <label for="formFile" class="form-label"> <span class="text-danger">*</span> Covid - Genelgesi - Taahhütnamesi<span class="text-danger"> Yükleyebilceğiniz dosya tipleri <b>"pdf,xlsx,docx,doc"</b>.</span></label>
                                         <input class="form-control"  type="file" name="covid_genelgesi_taahhutnamesi">
                                         <span class="text-danger">
                                     @error('covid_genelgesi_taahhutnamesi')
@@ -203,6 +194,18 @@
                                         <input class="form-control"  type="file" name="multidisipliner_arastirma_onay_formu">
                                         <span class="text-danger">
                                     @error('multidisipliner_arastirma_onay_formu')
+                                            {{ $message }}
+                                            @enderror
+                            </span>
+                                    </div>
+                                    <!-- end card -->
+                                </div>
+                                <div class="col-xl-12 col-md-12 mt-4">
+                                    <div>
+                                        <label for="formFile" class="form-label">ÜY-FR-1074 Taahutname<span class="text-danger"> Yükleyebilceğiniz dosya tipleri <b>"pdf,xlsx,docx,doc"</b>.</span></label>
+                                        <input class="form-control"  type="file" name="taahutname">
+                                        <span class="text-danger">
+                                    @error('taahutname')
                                             {{ $message }}
                                             @enderror
                             </span>

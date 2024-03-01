@@ -69,11 +69,11 @@
                                         <th>Sağlıklı Çocuk Onam Formu</th>
                                         <th>Bilgilendirilmiş Gönüllü Onam Formu</th>
                                         <th>Özgeçmiş</th>
-                                        <th>İlgili ABD Bilgilendirme Beyanı</th>
                                         <th>Covid Genelgesi Taahütnamesi</th>
                                         <th>Biyolojik Meteryal Transfer Formu</th>
                                         <th>Multidisipliner Araşturma Onay Formu</th>
-                                        <th>Değerlendirme Formu</th>
+                                        <th>Multidisipliner Araşturma Onay Formu</th>
+                                        <th>Taahutname</th>
                                         <th>EK-1</th>
                                         <th>EK-2</th>
                                         <th>EK-3</th>
@@ -175,13 +175,6 @@
                                                 @endif
                                             </td>
                                             <td>
-                                                @if(empty($datas->ilgili_abd_bilgilendirme_beyani))
-                                                    Belge Yüklenmemiş
-                                                @else
-                                                    <a href="{{ asset('etik/'.$datas->ilgili_abd_bilgilendirme_beyani) }}" target="_blank" class="btn btn-success btn-sm">İNDİR</a>
-                                                @endif
-                                            </td>
-                                            <td>
                                                 @if(empty($datas->covid_genelgesi_taahhutnamesi))
                                                     Belge Yüklenmemiş
                                                 @else
@@ -200,6 +193,13 @@
                                                     Belge Yüklenmemiş
                                                 @else
                                                     <a href="{{ asset('etik/'.$datas->multidisipliner_arastirma_onay_formu) }}" target="_blank" class="btn btn-success btn-sm">İNDİR</a>
+                                                @endif
+                                            </td>
+                                            <td>
+                                                @if(empty($datas->taahutname))
+                                                    Belge Yüklenmemiş
+                                                @else
+                                                    <a href="{{ asset('etik/'.$datas->taahutname) }}" target="_blank" class="btn btn-success btn-sm">İNDİR</a>
                                                 @endif
                                             </td>
                                             <td>

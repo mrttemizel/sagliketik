@@ -30,7 +30,7 @@ class StudentController extends Controller
         $path7 = public_path() . '/etik/' . $data->saglikli_cocuk_onam_formu;
         $path8 = public_path() . '/etik/' . $data->bilgilendirilmis_gonullu_goruntu_ve_ses;
         $path9 = public_path() . '/etik/' . $data->ozgecmis;
-        $path10 = public_path() . '/etik/' . $data->ilgili_abd_bilgilendirme_beyani;
+
         $path11= public_path() . '/etik/' . $data->covid_genelgesi_taahhutnamesi;
         $path12 = public_path() . '/etik/' . $data->biyolojik_meteryal_transfer_formu;
         $path13 = public_path() . '/etik/' . $data->multidisipliner_arastirma_onay_formu;
@@ -39,12 +39,14 @@ class StudentController extends Controller
         $path16 = public_path() . '/etik/' . $data->ek_2;
         $path17 = public_path() . '/etik/' . $data->ek_3;
 
+        $path18 = public_path() . '/etik/' . $data->taahutname;
+
         if (Auth::user()->status == 0 ||Auth::user()->status == 3) {
             return back()->with('error', 'Başvuru silme yetkiniz bulunmamaktadır!');
         }
         else{
-            if (\File::exists($path1,$path2,$path3,$path4,$path5,$path6,$path7,$path8,$path9,$path10,$path11,$path12,$path13,$path14,$path15,$path16,$path17)) {
-                \File::delete($path1,$path2,$path3,$path4,$path5,$path6,$path7,$path8,$path9,$path10,$path11,$path12,$path13,$path14,$path15,$path16,$path17);
+            if (\File::exists($path1,$path2,$path3,$path4,$path5,$path6,$path7,$path8,$path9,$path11,$path12,$path13,$path14,$path15,$path16,$path17,$path18)) {
+                \File::delete($path1,$path2,$path3,$path4,$path5,$path6,$path7,$path8,$path9,$path11,$path12,$path13,$path14,$path15,$path16,$path17,$path18);
             }
 
             $query = $data->delete();
@@ -96,7 +98,7 @@ class StudentController extends Controller
             'status' => $status,
         ];
 
-        Mail::to('mrttemizel@gmail.com')->send(new DegerlendirmeMail($mailData));
+        Mail::to($data->getUser->email)->send(new DegerlendirmeMail($mailData));
         $query = $data->update();
 
         if (!$query) {

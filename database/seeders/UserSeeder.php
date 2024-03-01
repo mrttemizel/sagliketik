@@ -16,7 +16,7 @@ class UserSeeder extends Seeder
         $admins = [
             [   'id' => 1,
                 'name' => 'Murat TEMİZEL',
-                'email' => 'admin@admin.com',
+                'email' => 'murat.temizel@antalya.edu.tr',
                 'password' => '$2y$10$AOClkj6hL0p..zy/KdWe9eN71KWdQqZuoVXkuwt4Y2hS4dQ9t9bWK',
                 'status' => 2,
             ]

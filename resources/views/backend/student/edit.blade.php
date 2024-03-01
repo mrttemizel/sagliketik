@@ -192,18 +192,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row mt-5  border-start-outset border-info">
-                            <div class="col-lg-12 d-flex align-items-center justify-content-between">
-                                <div>İlgili ABD Bilgilendirme Beyanı</div>
-                                <div>
-                                    @if(empty($data->ilgili_abd_bilgilendirme_beyani))
-                                        <i class="ri-spam-line align-middle me-2 bg-danger p-3"></i>
-                                    @else
-                                        <a href="{{ asset('etik/'.$data->ilgili_abd_bilgilendirme_beyani) }}" target="_blank" class="list-group-item list-group-item-action active"><i class="ri-download-2-fill align-middle me-2 bg-success p-3"></i></a>
-                                    @endif
-                                </div>
-                            </div>
-                        </div>
+                 
                         <div class="row mt-5  border-start-outset border-info">
                             <div class="col-lg-12 d-flex align-items-center justify-content-between">
                                 <div>Covid - Genelgesi - Taahhütnamesi</div>

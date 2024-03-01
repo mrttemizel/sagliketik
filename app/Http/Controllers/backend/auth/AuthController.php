@@ -42,7 +42,7 @@ class AuthController extends Controller
         $data -> phone = $request->input('phone');
         $data -> password = Hash::make($request->input('password'));
         $data -> status = 3;
-        $login_link = url('/');
+        $login_link = url('/login');
         $subject = 'Sağlık Etik Kurulu';
         Mail::to($request->email)->send(new UserRegisterMail($subject , $login_link));
 
